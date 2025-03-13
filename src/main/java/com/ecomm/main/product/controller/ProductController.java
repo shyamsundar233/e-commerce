@@ -3,7 +3,6 @@ package com.ecomm.main.product.controller;
 import com.ecomm.main.api.APIController;
 import com.ecomm.main.exception.ServiceException;
 import com.ecomm.main.product.entity.Product;
-import com.ecomm.main.product.entity.ProductDTO;
 import com.ecomm.main.product.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +22,11 @@ public class ProductController extends APIController {
     }
 
     @PostMapping("/product")
-    public ResponseEntity<Response> createProduct(@RequestBody ProductDTO data) {
+    public ResponseEntity<Response> createProduct(@RequestBody Product data) {
         try{
-            Product productData = productService.getEntityDataFromDTO(List.of(data)).get(0);
-            productData = productService.saveProduct(productData);
-            Map<String, Object> map = Map.of("id", productData.getId().toString());
-            addResponse(HttpStatus.CREATED, "Product created successfully", map);
+            data = productService.saveProduct(data);
+            Map<String, Object> map = Map.of("id", data.getId().toString());
+            addResponse(HttpStatus.OK, "Product created successfully", map);
             return response();
         } catch (Exception e) {
             HttpStatus code = e instanceof ServiceException ? ((ServiceException) e).code : HttpStatus.BAD_REQUEST;
@@ -42,8 +40,7 @@ public class ProductController extends APIController {
     public ResponseEntity<Response> getProducts() {
         try{
             List<Product> productList = productService.getAllProducts();
-            List<ProductDTO> productDTOList = productService.getDTODataFromEntity(productList);
-            Map<String, Object> map = Map.of("products", productDTOList);
+            Map<String, Object> map = Map.of("products", productList);
             addResponse(HttpStatus.OK, "Products list", map);
             return response();
         } catch (Exception e) {

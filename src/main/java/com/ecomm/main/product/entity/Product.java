@@ -1,8 +1,11 @@
 package com.ecomm.main.product.entity;
 
-import com.ecomm.main.vendor.entity.Vendor;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -12,16 +15,17 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String code;
+
     private String name;
 
     private String description;
 
-    private Double price;
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
-    private Integer stock;
-
-    @ManyToOne
-    @JoinColumn(name = "vendor_id")
-    private Vendor vendor = new Vendor();
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
 }
