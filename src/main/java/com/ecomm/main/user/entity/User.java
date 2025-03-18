@@ -1,4 +1,4 @@
-package com.ecomm.main.product.entity;
+package com.ecomm.main.user.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,17 +9,23 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-public class Product {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String code;
+    private String username;
 
-    private String name;
+    private String password;
 
-    private String description;
+    private String firstName;
+
+    private String lastName;
+
+    private String email;
+
+    private String phone;
 
     @CreationTimestamp
     @Column(updatable = false)
