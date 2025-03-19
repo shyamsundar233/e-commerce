@@ -1,6 +1,6 @@
-package com.ecomm.main.user.service;
+package com.ecomm.main.service;
 
-import com.ecomm.main.user.entity.User;
+import com.ecomm.main.entity.User;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

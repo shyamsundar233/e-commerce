@@ -1,4 +1,4 @@
-package com.ecomm.main.user.entity;
+package com.ecomm.main.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

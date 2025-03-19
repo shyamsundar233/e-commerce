@@ -1,7 +1,7 @@
-package com.ecomm.main.user.controller;
+package com.ecomm.main.controller;
 
-import com.ecomm.main.user.entity.User;
-import com.ecomm.main.user.service.UserService;
+import com.ecomm.main.entity.User;
+import com.ecomm.main.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
